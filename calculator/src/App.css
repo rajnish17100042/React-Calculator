@@ -1,0 +1,59 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+.App{
+display:flex;
+min-height:100vh;
+align-items:center;
+justify-content:center;
+}
+
+.calculator{
+  width:100%;
+  max-width:400px;
+  background-color:white;
+  overflow:hidden;
+
+}
+
+button{
+  appearence:none;
+  border:none;
+  outline:none;
+  color:white;
+  font-size:20px;
+  padding:16px;
+  cursor:pointer;
+  transition: 0.4s;
+}
+
+button:hover{
+  opacity:0.9;
+
+}
+
+.operators{
+  display:flex;
+
+}
+
+.operators button{
+flex:1 1 0%;
+background-color:rgb(224, 30, 30);
+}
+
+.digits{
+  
+  display:flex;
+  flex-wrap:wrap;
+}
+
+.digits button{
+  
+  flex:1 1 33.3333%;
+  max-width:33.3333%;
+  background-color:black;
+}
