@@ -19,8 +19,21 @@ justify-content:center;
 
 }
 
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
+  border-radius:4px;
+  background-color:black;
+  color:white;
+}
+
+input[type=text]:focus {
+  border: 3px solid #555;
+}
 button{
-  appearence:none;
+ 
   border:none;
   outline:none;
   color:white;
@@ -30,8 +43,10 @@ button{
   transition: 0.4s;
 }
 
+
+
 button:hover{
-  opacity:0.9;
+  opacity:0.8;
 
 }
 
@@ -42,11 +57,25 @@ button:hover{
 
 .operators button{
 flex:1 1 0%;
-background-color:rgb(224, 30, 30);
+background-color:rgb(41 ,144, 125)
+}
+
+.special-btn{
+  display:flex;
+  flex-wrap:wrap;
+ 
+}
+
+#del-btn{
+  background-color:rgb(144, 16, 46);
+}
+.special-btn button{
+  flex:1 1 33.3333%;
+  max-width:33.3333%;
+  background-color:rgb(183, 46, 46);
 }
 
 .digits{
-  
   display:flex;
   flex-wrap:wrap;
 }

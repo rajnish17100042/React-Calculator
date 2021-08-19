@@ -17,31 +17,38 @@ function App() {
     setCalc("");
   }
 
-  // arrow function display the result on  the screen
+  // arrow function to display the result on  the screen
   let display = (value) => {
 
     // check for the correct expression like  5+2 ...not 5++2
     if (
-      ops.includes(value) && calc === '' ||
-      ops.includes(value) && ops.includes(calc.slice(-1))
+      ((ops.includes(value)) && (calc === '')) ||
+      ((ops.includes(value)) && (ops.includes(calc.slice(-1))))
 
     ) {
 
       alert('not a valid expression');
       return;
     }
-    else {
-      setCalc(calc + value);
-      setResult(calc + value);
-    }
+
+    // if every thing is fine then update the calculation
+    setCalc(calc + value);
 
   }
 
+  // arrow function to calculate the result
   let calculate = () => {
 
-    setCalc(eval(calc));
+    // check if the last entered value is not an operator
+    if (!(ops.includes(calc.slice(-1)))) {
+
+      setResult(eval(calc).toString());   //eval() returns a number 
+    }
+
+
   }
 
+  // arrow function to delete the last character
   let deleteLast = () => {
     if (calc === "") {
       return;
@@ -52,20 +59,22 @@ function App() {
     }
   }
 
+
   return (
     <div className="App">
       <div className="calculator">
-        <input type="text" id="resultScreen" className="screen" value={calc} disabled />
+        <input type="text" id="resultScreen" className="screen" value={calc || "0"} disabled />
 
-        <input type="text" id="showHistory" className="history" value={result} disabled />
+        <input type="text" id="showResult" className="result" value={result} disabled />
 
         {/* code to create operators */}
         <div className="operators">
           {ops.map((operator, index) => {
+            // if key is not added to the button then there is a warning
             return (<button key={index} onClick={() => { display(operator) }}>{operator}</button>);
           })}
 
-          <button classNmae="operators" onClick={deleteLast}>Del</button>
+          <button id="del-btn" onClick={deleteLast}>Del</button>
         </div>
 
 
@@ -82,11 +91,11 @@ function App() {
 
         </div>
 
-        {/* for equal sign */}
-        <div className="digits evaluate">
-          <button className="equal-sign" onClick={calculate}>=</button>
-          <button className="digits clear-button" id="clear" onClick={clearScreen}> C </button>
-          <button className="digits" onClick={() => { display('00') }}> 00</button>
+        {/* special button*/}
+        <div className="special-btn">
+          <button onClick={calculate}>=</button>
+          <button id="clear" onClick={clearScreen}>C </button>
+          <button onClick={() => { display('00') }}> 00</button>
         </div>
 
 
