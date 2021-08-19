@@ -6,14 +6,13 @@ import './App.css';
 function App() {
 
   let [calc, setCalc] = useState("");
-  let [result, setResult] = useState("");
+  let [history, setHistory] = useState("");
 
   let ops = ['+', '-', '/', '*', '.'];
   let digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '(', ')'];
 
   // arrow function to clear the screen
   let clearScreen = () => {
-
     setCalc("");
   }
 
@@ -42,7 +41,7 @@ function App() {
     // check if the last entered value is not an operator
     if (!(ops.includes(calc.slice(-1)))) {
 
-      setResult(eval(calc).toString());   //eval() returns a number 
+      setCalc(eval(calc).toString());   //eval() returns a number 
     }
 
 
@@ -65,7 +64,7 @@ function App() {
       <div className="calculator">
         <input type="text" id="resultScreen" className="screen" value={calc || "0"} disabled />
 
-        <input type="text" id="showResult" className="result" value={result} disabled />
+        <input type="text" id="showResult" className="result" value={history} disabled />
 
         {/* code to create operators */}
         <div className="operators">
