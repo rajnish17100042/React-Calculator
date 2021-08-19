@@ -41,6 +41,9 @@ function App() {
     // check if the last entered value is not an operator
     if (!(ops.includes(calc.slice(-1)))) {
 
+      // first store the history
+      setHistory(calc);
+
       setCalc(eval(calc).toString());   //eval() returns a number 
     }
 
