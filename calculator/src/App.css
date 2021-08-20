@@ -40,7 +40,7 @@ button{
   font-size:20px;
   padding:16px;
   cursor:pointer;
-  transition: 0.4s;
+  
 }
 
 
@@ -70,8 +70,7 @@ background-color:rgb(41 ,144, 125)
   background-color:rgb(144, 16, 46);
 }
 .special-btn button{
-  flex:1 1 33.3333%;
-  max-width:33.3333%;
+  flex:33.3333%;
   background-color:rgb(183, 46, 46);
 }
 
@@ -82,7 +81,6 @@ background-color:rgb(41 ,144, 125)
 
 .digits button{
   
-  flex:1 1 33.3333%;
-  max-width:33.3333%;
-  background-color:black;
+  flex:33.3333%;
+ background-color:black;
 }

@@ -65,9 +65,9 @@ function App() {
   return (
     <div className="App">
       <div className="calculator">
-        <input type="text" id="resultScreen" className="screen" value={calc || "0"} disabled />
+        <input type="text" className="screen" value={calc || "0"} disabled />
 
-        <input type="text" id="showResult" className="result" value={history} disabled />
+        <input type="text" className="history" value={history} disabled />
 
         {/* code to create operators */}
         <div className="operators">
