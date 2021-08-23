@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
 import './App.css';
+import Buttons from './Buttons.js';
 
 
+//delFlag is used to handle the function(calculate func,display func,del func)....if delFlag is 0 then function will not execute  
+// i.e if result is calculated then del button should be disabled 
+
+let delFlag = 1;
 
 function App() {
+
+
 
   let [calc, setCalc] = useState("");
   let [history, setHistory] = useState("");
@@ -13,38 +20,61 @@ function App() {
 
   // arrow function to clear the screen
   let clearScreen = () => {
+    // although the data type of calc is changed to number after the expression is evaluated using eval() function which returns a number data type we are setting calc back to the string
     setCalc("");
+    setHistory("");
+    delFlag = 1;
   }
 
   // arrow function to display the result on  the screen
   let display = (value) => {
+    //  check if the expression is evaluated i.e if data type calc is a number 
+    if (delFlag) {
+      // check for the correct expression like  5+2 ...not 5++2
+      if (
+        ((ops.includes(value)) && (calc === '')) ||
+        ((ops.includes(value)) && (ops.includes(calc.slice(-1).toString())))
 
-    // check for the correct expression like  5+2 ...not 5++2
-    if (
-      ((ops.includes(value)) && (calc === '')) ||
-      ((ops.includes(value)) && (ops.includes(calc.slice(-1))))
+      ) {
 
-    ) {
+        alert('not a valid expression');
+        return;
+      }
 
-      alert('not a valid expression');
-      return;
+      // if every thing is fine then update the calculation
+
+      setCalc(calc + value);
+
     }
 
-    // if every thing is fine then update the calculation
-    setCalc(calc + value);
+
 
   }
+
+
+
 
   // arrow function to calculate the result
   let calculate = () => {
 
+    // check if the result is already calculated using the data type of calc and calc is not an empty string
     // check if the last entered value is not an operator
-    if (!(ops.includes(calc.slice(-1)))) {
+    if ((delFlag) && !(ops.includes(calc.slice(-1))) && calc != '') {
 
-      // first store the history
-      setHistory(calc);
+      try {
+        // first store the history
+        setHistory(calc);
 
-      setCalc(eval(calc).toString());   //eval() returns a number 
+        setCalc(eval(calc).toString());
+        delFlag = 0;
+        // alert('inside try block');
+      }
+      catch (error) {
+        setCalc("Error");
+        delFlag = 0;
+        // alert('inside catch block');
+      }
+
     }
 
 
@@ -52,18 +82,25 @@ function App() {
 
   // arrow function to delete the last character
   let deleteLast = () => {
+    // alert(delFlag);
+
     if (calc === "") {
       return;
     }
-    else {
+
+    // check if the calc value is a number ..if it is a number then it means the expression is evaluated then don't allow to press delete button
+    else if (delFlag) {
       let value = calc.slice(0, -1);
       setCalc(value);
     }
+
+
   }
 
 
   return (
-    <div className="App">
+
+    <div className="app">
       <div className="calculator">
         <input type="text" className="screen" value={calc || "0"} disabled />
 
@@ -107,7 +144,7 @@ function App() {
     </div>
 
   );
-}
 
+}
 
 export default App;
